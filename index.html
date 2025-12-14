@@ -1,1 +1,541 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Our College Journey 🌟</title>
+    <style>
+        /* --- General Styling & Advanced Theme --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8ebf0; /* Light Gray/Blue for clean look */
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #004d99; /* Deep College Blue */
+        }
+
+        /* --- Password Overlay Styling (Login Page) --- */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #004d99, #0099ff); /* Blue Gradient Background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        #login-box {
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+            width: 85%;
+            max-width: 450px;
+        }
+
+        #login-box h2 {
+            color: #ffaa00; /* Golden Yellow */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-poem {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 1em;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 20px;
+        }
+
+        .login-input {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #0099ff;
+            border-radius: 10px;
+            width: 90%;
+            text-align: center;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .login-input:focus {
+             border-color: #ffaa00;
+             box-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+        }
+
+        #login-submit {
+            padding: 14px 30px;
+            margin-top: 20px;
+            background-color: #ff6347; /* Tomato Red for action */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        #login-submit:hover {
+            background-color: #e5533d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #password-message {
+            margin-top: 15px;
+            color: red;
+            font-weight: bold;
+        }
+
+        /* --- Header & Title --- */
+        header {
+            background: #004d99;
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- Important Dates Section (Glowing Effect) --- */
+        #important-dates {
+            padding: 40px 0;
+            background-color: #f5f5f5;
+        }
+
+        .date-card-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .date-card {
+            background: #fff;
+            border: 1px solid #ffaa00; /* Golden Yellow Border */
+            border-radius: 15px;
+            padding: 25px 35px;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.5), 0 8px 15px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            max-width: 380px;
+            transition: all 0.5s ease-in-out;
+            text-align: center;
+        }
+
+        .date-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.8), 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .date-card h3 {
+            color: #ffaa00;
+            margin-top: 0;
+            font-size: 1.6em;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        .date-card p {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        /* --- Memories Section (Redesigned Grid) --- */
+        .memories-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            margin-bottom: 50px;
+            color: #004d99;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .memory-box {
+            background: #f8f8f8;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+            text-align: center;
+        }
+
+        .memory-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .memory-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .memory-box h3 {
+            padding: 15px 10px;
+            margin: 0;
+            font-size: 1.3em;
+            background-color: #004d99;
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        /* --- Poem Section (Clean Letter Look) --- */
+        .poem-section {
+            text-align: center;
+            padding: 60px 0;
+            background: #e8ebf0;
+        }
+
+        #open-letter-button {
+            padding: 15px 30px;
+            background-color: #ffaa00; /* Gold Button */
+            color: #004d99;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: opacity 0.5s, transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+        }
+
+        #open-letter-button:hover {
+            transform: scale(1.05);
+            background-color: #ffc107;
+        }
+
+        /* The Letter Box (Poem Content) */
+        #poem-box {
+            display: none;
+            width: 90%;
+            max-width: 650px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-left: 10px solid #ff6347; /* Red Accent */
+            text-align: left;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: letterSlideIn 1s forwards;
+            position: relative;
+        }
+        
+        #poem-box h3 {
+            color: #ff6347;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #user-poem-text {
+            font-size: 1.15em;
+            line-height: 2;
+            color: #333;
+            white-space: pre-wrap; /* Ensures poem line breaks are respected */
+            margin: 20px 0;
+        }
+
+        /* --- Thank You Box (Auto-Disappear) --- */
+        #thank-you-box {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 40px;
+            background: #0099ff;
+            color: white;
+            border-radius: 10px;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            animation: bounceIn 0.5s forwards;
+        }
+        
+        /* --- Keyframes (Animations) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 5px #ffaa00; }
+            100% { box-shadow: 0 0 15px #ffaa00, 0 0 20px rgba(255, 170, 0, 0.5); }
+        }
+
+        @keyframes letterSlideIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: translate(-50%, 50px) scale(0.5); }
+            100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .date-card-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .date-card {
+                width: 80%;
+                max-width: none;
+            }
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="password-overlay">
+        <div id="login-box">
+            <h2>OUR MEMORIES 💫</h2>
+            
+            <p class="login-poem">
+                "Here are the days, here is the time we spent,
+                <br>
+                A chapter of joy, where every moment went.
+                <br>
+                To unlock the past, a simple key you need,
+                <br>
+                Enter the secret, and let the memory feed."
+            </p>
+
+            <input type="text" id="name-input" class="login-input" placeholder="Enter Your Name">
+            <input type="password" id="password-input" class="login-input" placeholder="Enter Password (2007-AUG-07)">
+            <button id="login-submit">Unlock Our Journey</button>
+            <p id="password-message"></p>
+        </div>
+    </div>
+
+    <div id="main-content" style="display: none;">
+
+        <header>
+            <div class="container">
+                <h1>🎓 College Memories: A Golden Chapter 📚</h1>
+            </div>
+        </header>
+
+        <section id="important-dates" class="container">
+            <h2>✨ Milestone Dates ✨</h2>
+            <div class="date-card-wrapper">
+                <div class="date-card">
+                    <h3>The Journey Begins</h3>
+                    <p>Wednesday, May 14, 2025</p>
+                    <small>First step towards B.Tech</small>
+                </div>
+                <div class="date-card">
+                    <h3>The Farewell Day</h3>
+                    <p>Saturday, April 5, 2025</p>
+                    <small>Our final goodbye as college students</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="memories-section container">
+            <h2>🖼️ Glimpses of Our Golden Days 🖼️</h2>
+            <div class="memory-grid">
+                <div class="memory-box">
+                    <img src="image-1.jpg" alt="College Memory 1">
+                    <h3>Photo 1: 💫 Day</h3>
+                </div>
+                
+                <div class="memory-box">
+                    <img src="image-2.jpg" alt="College Memory 2">
+                    <h3>Photo 2:  Studies</h3>
+                </div>
+                
+                <div class="memory-box">
+                    <img src="image-3.jpg" alt="College Memory 3">
+                    <h3>Photo 3: Canteen & Hangouts</h3>
+                </div>
+                
+                <div class="memory-box">
+                    <img src="image-4.jpg" alt="Farewell Memory 4">
+                    <h3>Photo 4: Farewell hangouts</h3>
+                </div>
+                
+                <div class="memory-box">
+                    <img src="image-5.jpg" alt="Farewell Memory 5">
+                    <h3>Photo 5: Last Group Photo</h3>
+                </div>
+                
+                <div class="memory-box" style="visibility: hidden;"></div> 
+
+            </div>
+        </section>
+
+        <section class="poem-section">
+            <h2>💌 A Heartfelt Letter 💌</h2>
+            
+            <button id="open-letter-button">Tap to Open Letter</button>
+
+            <div id="poem-box">
+                <h3>To My Best Partner</h3>
+                <p id="user-poem-text">
+                    **College days began, a turning point clear,**
+                    <br>
+                    I met a new person who banished all fear.
+                    <br>
+                    Your smile was bright, you drew me right in,
+                    <br>
+                    A friendship with you, where joys would begin.
+                    <br>
+                    <br>
+                    We talked and we laughed, day and night went fast,
+                    <br>
+                    The connection we shared was meant to last.
+                    <br>
+                    In cold December, I finally spoke true,
+                    <br>
+                    I told you my love, and you said, "Me too."
+                    <br>
+                    <br>
+                    Our bond grew stronger, past simple friend lines,
+                    <br>
+                    Now we're inseparable, our future shines.
+                    <br>
+                    Built on trust, respect, and deep, gentle care,
+                    <br>
+                    A love that is honest, beyond compare.
+                    <br>
+                    <br>
+                    You are my best partner, my comfort, my guide,
+                    <br>
+                    In this journey of life, side by side. 
+                </p>
+                
+                <div id="thank-you-box" style="display: none;">THANK YOU</div>
+            </div>
+        </section>
+
+        <section class="closing-section container">
+            <h2 style="font-size: 4em; color: #ff6347; margin-top: 50px;">Missing Those Days...</h2>
+        </section>
+        
+    </div> <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordOverlay = document.getElementById('password-overlay');
+            const passwordInput = document.getElementById('password-input');
+            const nameInput = document.getElementById('name-input');
+            const loginSubmit = document.getElementById('login-submit');
+            const passwordMessage = document.getElementById('password-message');
+            const mainContent = document.getElementById('main-content');
+            const openButton = document.getElementById('open-letter-button');
+            const poemBox = document.getElementById('poem-box');
+            const thankYouBox = document.getElementById('thank-you-box');
+
+            const correctPassword = '2007-AUG-07';
+
+            // --- Password/Login Logic ---
+            const unlockContent = () => {
+                if (passwordInput.value === correctPassword) {
+                    passwordOverlay.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    document.body.style.overflow = 'auto'; // Enable scrolling
+                    // You can use the nameInput.value here if needed later
+                } else {
+                    passwordMessage.textContent = '❌ Incorrect Password. Please check again.';
+                    passwordInput.value = '';
+                }
+            };
+
+            loginSubmit.addEventListener('click', unlockContent);
+
+            // Allow ENTER key for login submission
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    unlockContent();
+                }
+            });
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    passwordInput.focus();
+                }
+            });
+
+
+            // --- Poem Box/Letter Logic ---
+            openButton.addEventListener('click', function() {
+                openButton.style.opacity = '0'; // Hide the button smoothly
+                setTimeout(() => {
+                    openButton.style.display = 'none';
+                    poemBox.style.display = 'block'; // Show the letter box
+                    
+                    // After the letter box opens (1 second), show the THANK YOU message
+                    setTimeout(() => {
+                        thankYouBox.style.display = 'block';
+                        // Wait 0.3 seconds before making it visible (for animation)
+                        setTimeout(() => {
+                             thankYouBox.style.opacity = '1';
+                        }, 50);
+
+                        // After 3 seconds, hide the THANK YOU message
+                        setTimeout(() => {
+                            thankYouBox.style.opacity = '0';
+                             // Wait for opacity transition to finish before setting display: none
+                            setTimeout(() => {
+                                thankYouBox.style.display = 'none';
+                            }, 300);
+                        }, 3000); // 3 seconds delay
+                        
+                    }, 1000); // 1 second delay to wait for letter box slide-in animation
+                    
+                }, 500); // 0.5 seconds delay for button fade-out
+            });
+        });
+    </script>
+  
+</body>
+</html>
